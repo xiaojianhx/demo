@@ -1,9 +1,8 @@
 package com.xiaojianhx.demo.vertx;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Vertx;
-import io.vertx.core.VertxOptions;
 import io.vertx.core.http.HttpServer;
+import io.vertx.ext.web.Router;
 
 public class App extends AbstractVerticle {
 
@@ -11,14 +10,25 @@ public class App extends AbstractVerticle {
 
         super.start();
 
-         VertxOptions options = null;
-         final HttpServer server = Vertx.vertx(options).createHttpServer();
-//        final HttpServer server = Vertx.vertx().createHttpServer();
+        System.out.println(Runtime.getRuntime().availableProcessors());
+        System.out.println(Thread.currentThread());
 
-        server.requestHandler(handler -> {
-            handler.response().end("hello");
-        });
+        final HttpServer server = vertx.createHttpServer();
 
-        server.listen(8080, "localhost");
+        Router router = Router.router(vertx);
+
+        router.route("/path/*").order(2).handler(new Router1Handler());
+        router.route("/path/*").order(1).handler(new Router2Handler());
+
+        Router subRouter = Router.router(vertx);
+        subRouter.route("/sub").handler(new SubRouter1Handler());
+        subRouter.route("/sub").handler(new SubRouter2Handler());
+        subRouter.route("/sub").handler(new SubRouter3Handler());
+        router.mountSubRouter("/path", subRouter);
+
+        router.route("/path/*").blockingHandler(new Router3Handler());
+        router.route("/path/*").last().handler(new EndHandler());
+
+        server.requestHandler(router::accept).listen(8080, "localhost");
     }
 }

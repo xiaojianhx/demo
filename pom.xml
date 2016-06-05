@@ -20,7 +20,8 @@
         <module>demo-vertx</module>
         <module>demo-dbcp</module>
         <module>demo-springmvc</module>
-    </modules>
+    <module>demo-design-pattern</module>
+  </modules>
 
     <dependencies>
         <dependency>

@@ -28,6 +28,7 @@ public class App extends AbstractVerticle {
 
         router.route("/path/*").blockingHandler(new Router3Handler());
         router.route("/path/*").last().handler(new EndHandler());
+        router.route("/path/*").failureHandler(new FailureHandler());
 
         server.requestHandler(router::accept).listen(8080, "localhost");
     }

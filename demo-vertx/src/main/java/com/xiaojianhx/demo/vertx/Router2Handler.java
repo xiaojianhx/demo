@@ -7,6 +7,7 @@ public class Router2Handler implements Handler<RoutingContext> {
 
     public void handle(RoutingContext context) {
         System.out.println(getClass().getSimpleName() + "-" + Thread.currentThread());
+        System.out.println(1 / 0);
         context.next();
     }
 }

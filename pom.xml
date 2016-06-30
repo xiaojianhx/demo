@@ -21,7 +21,8 @@
         <module>demo-dbcp</module>
         <module>demo-springmvc</module>
         <module>demo-design-pattern</module>
-    </modules>
+    <module>demo-rabbitmq</module>
+  </modules>
 
     <dependencies>
         <dependency>

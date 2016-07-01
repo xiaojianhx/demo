@@ -1,4 +1,4 @@
-package com.xiaojianhx.demo;
+package com.xiaojianhx.demo.grammar;
 
 public interface Handler<T> {
 

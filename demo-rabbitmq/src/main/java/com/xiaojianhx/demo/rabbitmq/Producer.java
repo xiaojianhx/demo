@@ -1,28 +1,32 @@
 package com.xiaojianhx.demo.rabbitmq;
 
+import java.util.concurrent.CountDownLatch;
+
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.MessageProperties;
 
-public class Producer {
+public class Producer implements Runnable {
 
     private static final String ORDER_QUEUE = "order";
 
-    public static void main(String[] args) throws Exception {
+    private Channel channel;
+    private String message;
 
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
+    private CountDownLatch latch;
 
-        channel.queueDeclare(ORDER_QUEUE, true, false, false, null);
+    public Producer(CountDownLatch latch, Channel channel, String message) {
+        this.latch = latch;
+        this.channel = channel;
+        this.message = message;
+    }
 
-        for (int i = 0; i < 10; i++) {
-            channel.basicPublish("", ORDER_QUEUE, MessageProperties.PERSISTENT_TEXT_PLAIN, ("测试" + i).getBytes());
+    public void run() {
+        try {
+            channel.basicPublish("", ORDER_QUEUE, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        channel.close();
-        connection.close();
+        latch.countDown();
     }
 }

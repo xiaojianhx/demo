@@ -5,34 +5,43 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 
-public class Worker {
+public class Worker implements Runnable {
 
     private static final String ORDER_QUEUE = "order";
 
-    public static void main(String[] args) throws Exception {
+    private Channel channel;
+    private QueueingConsumer consumer;
 
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
+    public Worker() {
 
-        channel.queueDeclare(ORDER_QUEUE, true, false, false, null);
+        try {
+            ConnectionFactory factory = new ConnectionFactory();
+            factory.setHost("localhost");
+            Connection connection = factory.newConnection();
+            channel = connection.createChannel();
+            channel.queueDeclare(ORDER_QUEUE, true, false, false, null);
+            channel.basicQos(1);
+            consumer = new QueueingConsumer(channel);
+            channel.basicConsume(ORDER_QUEUE, false, consumer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-        // 指定该消费者同时只接收一条消息
-        channel.basicQos(1);
-
-        QueueingConsumer consumer = new QueueingConsumer(channel);
-
-        channel.basicConsume(ORDER_QUEUE, false, consumer);
+    public void run() {
 
         int count = 0;
 
         while (true) {
 
-            QueueingConsumer.Delivery delivery = consumer.nextDelivery();
-            String message = new String(delivery.getBody());
-            System.out.println(count++ + "次," + message + ",");
-            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), true);
+            try {
+                QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+                String message = new String(delivery.getBody());
+                System.out.println(count++ + "次," + message + ",");
+                channel.basicAck(delivery.getEnvelope().getDeliveryTag(), true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

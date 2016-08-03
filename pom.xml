@@ -10,6 +10,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.8</jdk.version>
 
+        <logback.version>1.1.7</logback.version>
+
         <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
     </properties>
@@ -21,8 +23,8 @@
         <module>demo-dbcp</module>
         <module>demo-springmvc</module>
         <module>demo-design-pattern</module>
-    <module>demo-rabbitmq</module>
-  </modules>
+        <module>demo-rabbitmq</module>
+    </modules>
 
     <dependencies>
         <dependency>
@@ -31,6 +33,13 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
     </dependencies>
     <profiles>
         <profile>

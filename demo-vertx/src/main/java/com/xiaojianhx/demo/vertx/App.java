@@ -1,17 +1,22 @@
 package com.xiaojianhx.demo.vertx;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 
 public class App extends AbstractVerticle {
 
+    private Logger log = LoggerFactory.getLogger(App.class);
+
     public void start() throws Exception {
 
         super.start();
 
-        System.out.println(Runtime.getRuntime().availableProcessors());
-        System.out.println(Thread.currentThread());
+        log.debug(Runtime.getRuntime().availableProcessors() + "");
+        log.debug(Thread.currentThread() + "");
 
         final HttpServer server = vertx.createHttpServer();
 
@@ -30,6 +35,6 @@ public class App extends AbstractVerticle {
         router.route("/path/*").last().handler(new EndHandler());
         router.route("/path/*").failureHandler(new FailureHandler());
 
-        server.requestHandler(router::accept).listen(8080, "localhost");
+        server.requestHandler(router::accept).listen(config().getInteger("port"), config().getString("host"));
     }
 }

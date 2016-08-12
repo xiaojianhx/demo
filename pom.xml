@@ -24,7 +24,8 @@
         <module>demo-springmvc</module>
         <module>demo-design-pattern</module>
         <module>demo-rabbitmq</module>
-    </modules>
+    <module>demo-springboot</module>
+  </modules>
 
     <dependencies>
         <dependency>

@@ -24,11 +24,12 @@ public class Application {
         return service.get(sn);
     }
 
-    @RequestMapping("/order/create")
+    @RequestMapping("/create")
     public Order create(String sn) {
         Order order = new Order();
         order.setSn(sn);
         service.insert(order);
+        System.out.println(1 / 0);
         return order;
     }
 

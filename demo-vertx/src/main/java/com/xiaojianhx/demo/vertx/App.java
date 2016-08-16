@@ -7,6 +7,10 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 
+/**
+ * 
+ * start like 'java -Djava.ext.dirs=./lib;.; io.vertx.core.Launcher run com.xiaojianhx.demo.vertx.App -conf config.json'
+ */
 public class App extends AbstractVerticle {
 
     private Logger log = LoggerFactory.getLogger(App.class);

@@ -5,7 +5,7 @@
 <!-- debug: 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
 <configuration debug="true" scan="true" scanPeriod="30 seconds">
 
-    <property name="APP_NAME" value="demo-vertx" />
+    <property name="APP_NAME" value="demo-spring" />
     <property name="LOG_FORMAT" value="[%-5p][%d]\: - [%c{2}.%M:%L] - %m%n" />
 
     <contextName>${APP_NAME}</contextName>
@@ -20,7 +20,7 @@
 
         <Encoding>UTF-8</Encoding>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>/logs/demo/vertx/app.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>/logs/demo/spring/app.%d{yyyy-MM-dd}.log</FileNamePattern>
         </rollingPolicy>
 
         <layout class="ch.qos.logback.classic.PatternLayout">

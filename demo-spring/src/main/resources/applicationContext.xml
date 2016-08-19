@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="bean00" class="com.xiaojianhx.demo.spring.bean.Bean00">
+        <property name="account" value="admin" />
+        <property name="password" value="123456" />
+    </bean>
+
+    <bean id="bean01" class="com.xiaojianhx.demo.spring.bean.Bean01">
+        <constructor-arg index="0" name="account" value="admin" />
+        <constructor-arg index="1" name="password" value="123456" />
+    </bean>
+
+    <bean id="bean10" class="com.xiaojianhx.demo.spring.bean.StaticBeanFactory" factory-method="getBean">
+        <property name="account" value="admin" />
+        <property name="password" value="123456" />
+    </bean>
+
+    <bean id="factory" class="com.xiaojianhx.demo.spring.bean.BeanFactory" />
+
+</beans>

@@ -1,15 +1,15 @@
-package com.xiaojianhx.demo.spring;
+package com.xiaojianhx.demo.spring.ioc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.xiaojianhx.demo.spring.bean.Bean00;
-import com.xiaojianhx.demo.spring.bean.Bean01;
-import com.xiaojianhx.demo.spring.bean.Bean10;
-import com.xiaojianhx.demo.spring.bean.Bean20;
-import com.xiaojianhx.demo.spring.bean.BeanFactory;
+import com.xiaojianhx.demo.spring.ioc.bean.Bean00;
+import com.xiaojianhx.demo.spring.ioc.bean.Bean01;
+import com.xiaojianhx.demo.spring.ioc.bean.Bean10;
+import com.xiaojianhx.demo.spring.ioc.bean.Bean20;
+import com.xiaojianhx.demo.spring.ioc.bean.BeanFactory;
 
 public class Application {
 

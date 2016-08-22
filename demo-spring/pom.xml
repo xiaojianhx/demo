@@ -21,5 +21,11 @@
             <artifactId>spring-context</artifactId>
             <version>${springmvc.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${springmvc.version}</version>
+        </dependency>
     </dependencies>
 </project>

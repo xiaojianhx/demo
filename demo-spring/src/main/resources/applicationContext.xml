@@ -22,4 +22,7 @@
 
     <bean id="factory" class="com.xiaojianhx.demo.spring.ioc.bean.BeanFactory" />
 
+    <bean id="bean30" class="com.xiaojianhx.demo.spring.ioc.bean.Bean30" />
+    <bean id="bean31" class="com.xiaojianhx.demo.spring.ioc.bean.Bean31" scope="prototype" />
+
 </beans>

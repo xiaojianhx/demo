@@ -1,5 +1,7 @@
 package com.xiaojianhx.demo.spring.ioc;
 
+import java.util.concurrent.CountDownLatch;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -16,6 +18,13 @@ public class Application {
     private static Logger log = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
+
+        createObject();
+
+        createObjectScope();
+    }
+
+    private static void createObject() {
 
         ConfigurableApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
 
@@ -43,5 +52,57 @@ public class Application {
         log.info(bean20.getPassword());
 
         ac.close();
+    }
+
+    private static void createObjectScope() {
+
+        ConfigurableApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
+
+        CountDownLatch latch = new CountDownLatch(4);
+
+        GetBean bean00 = new GetBean(latch, ac, "bean30");
+        GetBean bean01 = new GetBean(latch, ac, "bean30");
+
+        GetBean bean10 = new GetBean(latch, ac, "bean31");
+        GetBean bean11 = new GetBean(latch, ac, "bean31");
+
+        new Thread(bean00).start();
+        new Thread(bean01).start();
+        new Thread(bean10).start();
+        new Thread(bean11).start();
+
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("单例模式:" + bean00.getBean());
+        System.out.println("单例模式:" + bean01.getBean());
+        System.out.println("多例模式:" + bean10.getBean());
+        System.out.println("多例模式:" + bean11.getBean());
+    }
+
+    private static class GetBean implements Runnable {
+
+        private CountDownLatch latch;
+        private ConfigurableApplicationContext ac;
+        private String beanName;
+        private Object bean;
+
+        public GetBean(CountDownLatch latch, ConfigurableApplicationContext ac, String beanName) {
+            this.latch = latch;
+            this.ac = ac;
+            this.beanName = beanName;
+        }
+
+        public Object getBean() {
+            return bean;
+        }
+
+        public void run() {
+            bean = ac.getBean(beanName);
+            latch.countDown();
+        }
     }
 }

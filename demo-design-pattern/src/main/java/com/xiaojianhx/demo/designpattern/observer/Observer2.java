@@ -1,4 +1,4 @@
-package com.xiaojianhx.demo.observer;
+package com.xiaojianhx.demo.designpattern.observer;
 
 public class Observer2 implements Observer {
 

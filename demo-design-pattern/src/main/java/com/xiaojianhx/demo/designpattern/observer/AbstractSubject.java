@@ -1,4 +1,4 @@
-package com.xiaojianhx.demo.observer;
+package com.xiaojianhx.demo.designpattern.observer;
 
 import java.util.Enumeration;
 import java.util.Vector;

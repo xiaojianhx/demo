@@ -5,9 +5,9 @@
 <!-- debug: 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。 -->
 <configuration debug="true" scan="true" scanPeriod="1 seconds">
 
-    <property name="APP_NAME" value="demo-vertx" />
+    <property name="APP_NAME" value="demo-mybatis" />
     <property name="LOG_FORMAT" value="[%-5p][%d]\: - [%c{2}.%M:%L] - %m%n" />
-    <property name="CATALINA_BASE" value="/logs/demo/vertx" />
+    <property name="CATALINA_BASE" value="/logs/demo/mybatis" />
 
     <contextName>${APP_NAME}</contextName>
 
@@ -28,7 +28,7 @@
         </layout>
     </appender>
 
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="APP" />
     </root>

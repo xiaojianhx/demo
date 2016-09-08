@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaojianhx.demo.mybatis.db.dao.BuyerMapper">
+
+    <resultMap type="com.xiaojianhx.demo.mybatis.db.entity.Buyer" id="buyerMap">
+        <id column="id" property="id" />
+        <result column="GRADE" property="grade" />
+        <result column="ISAUDIT" property="audit" />
+        <association column="user_id" property="user" select="User.get" />
+    </resultMap>
+
+    <resultMap type="com.xiaojianhx.demo.mybatis.db.entity.User" id="userMap">
+        <id column="id" property="id" />
+        <result column="USERNAME" property="username" />
+        <result column="PASSWORD" property="password" />
+        <result column="SALT" property="salt" />
+    </resultMap>
+
+    <select id="get" resultMap="buyerMap">
+        select * from buyers where id = #{0}
+    </select>
+</mapper>

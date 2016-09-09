@@ -4,19 +4,25 @@
 
 <mapper namespace="com.xiaojianhx.demo.mybatis.db.dao.UserMapper">
 
+    <resultMap id="userResultMap" type="user">
+        <id column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+    </resultMap>
+
     <sql id="column">
         <![CDATA[
             SELECT
                 ID AS id,
-                USERNAME AS userName,
+                USERNAME AS username,
                 PASSWORD AS password,
                 SALT AS salt
             FROM users 
         ]]>
     </sql>
 
-    <select id="get" resultType="user">
-        <include refid="column" />
-        WHERE ID = #{0}
+    <select id="get" resultMap="userResultMap">
+        SELECT * FROM users WHERE ID = #{0}
     </select>
 </mapper>

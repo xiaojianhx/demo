@@ -17,13 +17,16 @@ public class Application {
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
         SqlSession session = sessionFactory.openSession();
 
-        // User user =
-        // session.selectOne("com.xiaojianhx.demo.mybatis.db.dao.UserMapper.get",
-        // 1);
-        // System.out.println(user.getId());
+        User user = session.selectOne("com.xiaojianhx.demo.mybatis.db.dao.UserMapper.get", 1);
+        System.out.println(user.getUsername());
 
         Buyer buyer = session.selectOne("com.xiaojianhx.demo.mybatis.db.dao.BuyerMapper.get", 1);
         System.out.println(buyer.getId());
+
+        // 延迟加载
+        System.out.println(buyer.getUser().getUsername());
+
+        // 不会二次加载
         System.out.println(buyer.getUser().getUsername());
     }
 }

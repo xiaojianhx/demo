@@ -14,12 +14,13 @@ public class App {
         int taskSize = 5;
         ExecutorService pool = Executors.newFixedThreadPool(taskSize);
 
-        List<Future> data = new ArrayList<Future>();
+        List<Future<String>> data = new ArrayList<Future<String>>();
 
         for (int i = 0; i < taskSize; i++) {
 
-            Future f = pool.submit(() -> {
-                return new Random().nextInt(100);
+            Future<String> f = pool.submit(() -> {
+                System.out.println(Thread.currentThread().getName());
+                return Thread.currentThread().getName() + "," + new Random().nextInt(100);
             });
 
             data.add(f);
@@ -27,7 +28,14 @@ public class App {
 
         pool.shutdown();
 
-        data.forEach(System.out::println);
-        System.out.println("thread-main");
+        data.forEach(item -> {
+            try {
+                System.out.println(item.get());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        System.out.println(Thread.currentThread().getName());
     }
 }

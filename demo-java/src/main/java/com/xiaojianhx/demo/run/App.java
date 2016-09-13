@@ -6,7 +6,7 @@ public class App {
 
         F f = new F();
         f = new S();
-        f.getClass();
+        System.out.println(f.getClass());
     }
 }
 

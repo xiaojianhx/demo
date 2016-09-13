@@ -1,4 +1,12 @@
 {
-	"host":"localhost",
-	"port":8080
+  "service.host": "localhost",
+  "service.port": 8080,
+  "host": "172.16.1.5",
+  "port": 3306,
+  "maxPoolSize": 20,
+  "username": "root",
+  "password": "123.com",
+  "database": "jmuv3_gaowanchao",
+  "charset": "utf-8",
+  "queryTimeout": 10000
 }

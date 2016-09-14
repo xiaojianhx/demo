@@ -11,7 +11,9 @@ public class App {
 
     public static void main(String[] args) {
 
-        int taskSize = 5;
+        long start = System.currentTimeMillis();
+
+        int taskSize = 50;
         ExecutorService pool = Executors.newFixedThreadPool(taskSize);
 
         List<Future<String>> data = new ArrayList<Future<String>>();
@@ -19,6 +21,7 @@ public class App {
         for (int i = 0; i < taskSize; i++) {
 
             Future<String> f = pool.submit(() -> {
+                Thread.sleep(2000);
                 System.out.println(Thread.currentThread().getName());
                 return Thread.currentThread().getName() + "," + new Random().nextInt(100);
             });
@@ -36,6 +39,7 @@ public class App {
             }
         });
 
+        System.out.println(System.currentTimeMillis() - start + "ms");
         System.out.println(Thread.currentThread().getName());
     }
 }

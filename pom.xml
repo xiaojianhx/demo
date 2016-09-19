@@ -26,8 +26,9 @@
         <module>demo-rabbitmq</module>
         <module>demo-springboot</module>
         <module>demo-spring</module>
-    <module>demo-mybatis</module>
-  </modules>
+        <module>demo-mybatis</module>
+        <module>demo-redis</module>
+    </modules>
 
     <dependencies>
         <dependency>

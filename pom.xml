@@ -28,8 +28,8 @@
         <module>demo-spring</module>
         <module>demo-mybatis</module>
         <module>demo-redis</module>
-    <module>demo-hessian</module>
-  </modules>
+        <module>demo-hessian</module>
+    </modules>
 
     <dependencies>
         <dependency>

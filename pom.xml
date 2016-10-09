@@ -20,7 +20,6 @@
         <module>demo-java</module>
         <module>demo-hibernate</module>
         <module>demo-vertx</module>
-        <module>demo-dbcp</module>
         <module>demo-springmvc</module>
         <module>demo-design-pattern</module>
         <module>demo-rabbitmq</module>

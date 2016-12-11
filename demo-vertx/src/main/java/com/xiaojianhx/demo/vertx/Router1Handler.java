@@ -1,7 +1,7 @@
 package com.xiaojianhx.demo.vertx;
 
 import io.vertx.core.Handler;
-import io.vertx.ext.web.RoutingContext;
+import io.vertx.rxjava.ext.web.RoutingContext;
 
 public class Router1Handler implements Handler<RoutingContext> {
 

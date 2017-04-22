@@ -27,6 +27,7 @@
         <module>demo-mybatis</module>
         <module>demo-redis</module>
         <module>demo-hessian</module>
+        <module>demo-springmvc</module>
     </modules>
 
     <dependencies>

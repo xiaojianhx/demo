@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://192.168.1.200:3306/hibernate</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/demo-hibernate?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">123456</property>
         <property name="hibernate.show_sql">true</property>
@@ -20,7 +20,7 @@
         <!-- <property name="connection.characterEncoding">utf8</property> -->
         <!-- <property name="current_session_context_class">thread</property> -->
 
-        <mapping resource="hbm/*.hbm.xml" />
+        <mapping resource="/hbm/user.hbm.xml" />
     </session-factory>
 
 </hibernate-configuration>   

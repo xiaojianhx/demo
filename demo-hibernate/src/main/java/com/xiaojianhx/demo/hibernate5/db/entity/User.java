@@ -3,6 +3,7 @@ package com.xiaojianhx.demo.hibernate5.db.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,9 +15,9 @@ public class User extends MainEntity {
 
     @Id
     @GenericGenerator(name = "generator", strategy = "increment")
-    @GeneratedValue(generator = "generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
     @Column(name = "account", length = 20)
     private String account;
@@ -30,11 +31,11 @@ public class User extends MainEntity {
     @Column(name = "password", length = 50)
     private String password;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

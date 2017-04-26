@@ -3,7 +3,6 @@ package com.xiaojianhx.demo.hibernate5;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
@@ -12,7 +11,7 @@ import com.xiaojianhx.demo.hibernate5.db.entity.User;
 public class UserTest {
 
     private SessionFactory sessionFactory = null;
-    private Configuration configuration = new AnnotationConfiguration().configure();
+    private Configuration configuration = new Configuration().configure();
     private Session session;
     private Transaction transaction;
 

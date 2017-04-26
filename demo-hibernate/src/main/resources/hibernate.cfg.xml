@@ -11,7 +11,8 @@
         <property name="hibernate.connection.password">123456</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.dialect.storage_engine">innodb</property>
+        <property name="hbm2ddl.auto">update</property>
         <!-- <property name="hibernate.connection.pool.size">20</property> -->
         <!-- <property name="jdbc.fetch_size">50</property> -->
         <!-- <property name="jdbc.batch_size">20</property> -->
@@ -19,6 +20,9 @@
         <!-- <property name="Connection.useUnicode">true</property> -->
         <!-- <property name="connection.characterEncoding">utf8</property> -->
         <!-- <property name="current_session_context_class">thread</property> -->
+
+        <!-- <mapping package="com.xiaojianhx.demo.hibernate5.db.entity" /> -->
+        <mapping class="com.xiaojianhx.demo.hibernate5.db.entity.User" />
     </session-factory>
 
 </hibernate-configuration>   

@@ -13,6 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <hibernate.version>5.2.10.Final</hibernate.version>
+        <hibenrate.annotations.version>3.5.6-Final</hibenrate.annotations.version>
         <mysql.connector.java.version>5.1.39</mysql.connector.java.version>
     </properties>
 
@@ -22,6 +23,18 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>${hibenrate.annotations.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>ejb3-persistence</artifactId>
+            <version>1.0.2.GA</version>
         </dependency>
 
         <dependency>

@@ -1,18 +1,40 @@
 package com.xiaojianhx.demo.hibernate5.db.entity;
 
-public class User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    private long id;
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name = "users")
+public class User extends MainEntity {
+
+    @Id
+    @GenericGenerator(name = "generator", strategy = "increment")
+    @GeneratedValue(generator = "generator")
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "account", length = 20)
     private String account;
+
+    @Column(name = "mobile", length = 20)
     private String mobile;
+
+    @Column(name = "email", length = 50)
     private String email;
+
+    @Column(name = "password", length = 50)
     private String password;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

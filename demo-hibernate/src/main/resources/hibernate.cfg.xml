@@ -19,8 +19,6 @@
         <!-- <property name="Connection.useUnicode">true</property> -->
         <!-- <property name="connection.characterEncoding">utf8</property> -->
         <!-- <property name="current_session_context_class">thread</property> -->
-
-        <mapping resource="/hbm/user.hbm.xml" />
     </session-factory>
 
 </hibernate-configuration>   

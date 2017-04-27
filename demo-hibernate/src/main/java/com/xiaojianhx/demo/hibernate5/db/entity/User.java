@@ -2,7 +2,6 @@ package com.xiaojianhx.demo.hibernate5.db.entity;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;

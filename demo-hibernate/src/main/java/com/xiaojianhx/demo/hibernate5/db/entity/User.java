@@ -1,11 +1,17 @@
 package com.xiaojianhx.demo.hibernate5.db.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +21,7 @@ public class User extends MainEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private long id;
 
     @Column(name = "account", nullable = false, columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '账号'")
     private String account;
@@ -41,11 +47,15 @@ public class User extends MainEntity {
     @Column(name = "del_flg", nullable = false, columnDefinition = "TINYINT(2) DEFAULT 0 COMMENT '逻辑状态：0-正常；1-删除；'")
     private short defFlg;
 
-    public Integer getId() {
+    @ManyToMany
+    @JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
+    private Set<Role> roleSet;
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -111,5 +121,13 @@ public class User extends MainEntity {
 
     public void setDefFlg(short defFlg) {
         this.defFlg = defFlg;
+    }
+
+    public Set<Role> getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(Set<Role> roleSet) {
+        this.roleSet = roleSet;
     }
 }

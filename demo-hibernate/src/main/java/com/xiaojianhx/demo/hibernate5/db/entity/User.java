@@ -5,9 +5,6 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -16,11 +13,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User extends MainEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
 
     @Column(name = "account", nullable = false, columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '账号'")
     private String account;
@@ -43,20 +35,9 @@ public class User extends MainEntity {
     @Embedded
     private Update update;
 
-    @Column(name = "del_flg", nullable = false, columnDefinition = "TINYINT(2) DEFAULT 0 COMMENT '逻辑状态：0-正常；1-删除；'")
-    private short defFlg;
-
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
     private Set<Role> roleSet;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getAccount() {
         return account;
@@ -112,14 +93,6 @@ public class User extends MainEntity {
 
     public void setUpdate(Update update) {
         this.update = update;
-    }
-
-    public short getDefFlg() {
-        return defFlg;
-    }
-
-    public void setDefFlg(short defFlg) {
-        this.defFlg = defFlg;
     }
 
     public Set<Role> getRoleSet() {

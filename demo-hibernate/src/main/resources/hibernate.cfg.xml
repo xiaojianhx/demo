@@ -22,6 +22,7 @@
 
         <mapping class="com.xiaojianhx.demo.hibernate5.db.entity.User" />
         <mapping class="com.xiaojianhx.demo.hibernate5.db.entity.Role" />
+        <mapping class="com.xiaojianhx.demo.hibernate5.db.entity.Right" />
     </session-factory>
 
 </hibernate-configuration>   

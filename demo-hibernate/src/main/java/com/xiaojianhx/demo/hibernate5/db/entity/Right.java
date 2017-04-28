@@ -11,8 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "roles")
-public class Role extends MainEntity {
+@Table(name = "rights")
+public class Right extends MainEntity {
 
     @Column(name = "name", nullable = false, columnDefinition = "VARCHAR(20) DEFAULT '' COMMENT '名称'")
     private String name;
@@ -21,12 +21,8 @@ public class Role extends MainEntity {
     private Update update;
 
     @ManyToMany
-    @JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
-    private Set<User> userSet;
-
-    @ManyToMany
-    @JoinTable(name = "role_rights", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = { @JoinColumn(name = "right_id") })
-    private Set<Right> rightSet;
+    @JoinTable(name = "role_rights", joinColumns = { @JoinColumn(name = "right_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
+    private Set<Role> roleSet;
 
     public String getName() {
         return name;
@@ -44,19 +40,11 @@ public class Role extends MainEntity {
         this.update = update;
     }
 
-    public Set<User> getUserSet() {
-        return userSet;
+    public Set<Role> getRoleSet() {
+        return roleSet;
     }
 
-    public void setUserSet(Set<User> userSet) {
-        this.userSet = userSet;
-    }
-
-    public Set<Right> getRightSet() {
-        return rightSet;
-    }
-
-    public void setRightSet(Set<Right> rightSet) {
-        this.rightSet = rightSet;
+    public void setRoleSet(Set<Role> roleSet) {
+        this.roleSet = roleSet;
     }
 }

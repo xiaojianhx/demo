@@ -8,6 +8,7 @@ import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,7 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     public void complete(Task task) {
+        processEngine.getTaskService().addComment(task.getId(), task.getProcessInstanceId(), "不行");
         processEngine.getTaskService().complete(task.getId());
     }
 
@@ -51,5 +53,9 @@ public class ProcessServiceImpl implements ProcessService {
 
     public List<HistoricProcessInstance> include(String userId) {
         return processEngine.getHistoryService().createHistoricProcessInstanceQuery().involvedUser(userId).list();
+    }
+
+    public List<Comment> comments(String processInstanceId) {
+        return processEngine.getTaskService().getProcessInstanceComments(processInstanceId);
     }
 }

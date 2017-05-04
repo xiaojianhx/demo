@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.task.Comment;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,12 @@ public class ActivitiHistoryTest extends MainTest {
     private void show(List<HistoricProcessInstance> data) {
         data.forEach(hpi -> {
             logger.info("{}, {}, {}, {}", format(hpi.getEndTime()), hpi.getName(), hpi.getProcessVariables(), hpi.getStartUserId());
+
+            List<Comment> commentList = service.comments(hpi.getId());
+
+            commentList.forEach(comment -> {
+                logger.info("备注:" + comment.getUserId() + "," + comment.getFullMessage());
+            });
         });
     }
 

@@ -3,9 +3,10 @@ package com.xiaojianhx.demo.vertx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.vertx.rxjava.core.AbstractVerticle;
-import io.vertx.rxjava.core.http.HttpServer;
-import io.vertx.rxjava.ext.web.Router;
+import io.vertx.core.AbstractVerticle;
+import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerResponse;
+import io.vertx.ext.web.Router;
 
 /**
  * 
@@ -27,18 +28,46 @@ public class App extends AbstractVerticle {
 
         Router router = Router.router(vertx);
 
-//        router.route("/path/*").order(2).handler(new Router1Handler());
-        router.route("/path/*").order(1).handler(new Router2Handler());
-//
-//        Router subRouter = Router.router(vertx);
-//        subRouter.route("/sub").handler(new SubRouter1Handler());
-//        subRouter.route("/sub").handler(new SubRouter2Handler());
-//        subRouter.route("/sub").handler(new SubRouter3Handler());
-//        router.mountSubRouter("/path", subRouter);
-//
-//        router.route("/path/*").blockingHandler(new Router3Handler());
-//        router.route("/path/*").last().handler(new EndHandler());
-//        router.route("/path/*").failureHandler(new FailureHandler());
+        // router.route().handler(rc -> {
+        // HttpServerResponse response = rc.response();
+        // response.putHeader("content-type", "text/plain");
+        // response.end("ok");
+        // });
+
+        router.route("/some/path/").handler(routingContext -> {
+
+            HttpServerResponse response = routingContext.response();
+            response.setChunked(true);
+
+            response.write("route1\n");
+            routingContext.vertx().setTimer(1000, tid -> routingContext.next());
+        });
+
+        router.route("/some/path/").handler(routingContext -> {
+
+            HttpServerResponse response = routingContext.response();
+            response.write("route2\n");
+            routingContext.vertx().setTimer(1000, tid -> routingContext.next());
+        });
+
+        router.route("/some/path/").consumes("application/json").handler(routingContext -> {
+
+            HttpServerResponse response = routingContext.response();
+            response.write("route3").end();
+        });
+
+        // router.route("/path/*").order(2).handler(new Router1Handler());
+        // router.route("/path/*").order(1).handler(new Router2Handler());
+        //
+        // Router subRouter = Router.router(vertx);
+        // subRouter.route("/sub").handler(new SubRouter1Handler());
+        // subRouter.route("/sub").handler(new SubRouter2Handler());
+        // subRouter.route("/sub").handler(new SubRouter3Handler());
+        // router.mountSubRouter("/path", subRouter);
+        //
+        // router.route("/path/*").blockingHandler(new Router3Handler());
+        // router.route("/path/*").last().handler(new EndHandler());
+        // router.route("/path/*").failureHandler(new FailureHandler());
 
         server.requestHandler(router::accept).listen(config().getInteger("service.port"), config().getString("service.host"));
     }

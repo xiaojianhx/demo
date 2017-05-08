@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <httpclient.version>4.5.2</httpclient.version>
-        <vertx.version>3.3.3</vertx.version>
+        <vertx.version>3.4.1</vertx.version>
 
         <commons.lang.version>2.6</commons.lang.version>
     </properties>
@@ -22,11 +22,6 @@
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-web</artifactId>
-            <version>${vertx.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-rx-java</artifactId>
             <version>${vertx.version}</version>
         </dependency>
         <dependency>

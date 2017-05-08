@@ -38,7 +38,7 @@ public class Router2Handler implements Handler<RoutingContext> {
         // }, err -> {
         // err.printStackTrace();
         // });
-
+        // Connect to the database
         rc.next();
     }
 }

@@ -13,7 +13,7 @@ public class RedisTest {
     public void testConnection() {
 
         try {
-            Jedis jedis = new Jedis("192.168.1.220", 6379);
+            Jedis jedis = new Jedis("192.168.1.80", 6379);
             jedis.set("name", "gao");
 
             // 有效期

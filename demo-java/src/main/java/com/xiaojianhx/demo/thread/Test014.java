@@ -47,20 +47,5 @@ public class Test014 {
                 }
             }
         }
-
-        public void method1() {
-
-            synchronized (lock1) {
-                System.out.println("method1 start " + Thread.currentThread().getName());
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("method1   end " + Thread.currentThread().getName());
-
-                method1();
-            }
-        }
     }
 }

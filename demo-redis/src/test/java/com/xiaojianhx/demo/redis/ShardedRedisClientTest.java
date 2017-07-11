@@ -18,72 +18,40 @@ public class ShardedRedisClientTest {
         config.setMaxWaitMillis(1000 * 1000);
         config.setTestOnBorrow(true);
 
-        String hostA = "192.168.1.120";
+        String hostA = "192.168.1.111";
         int portA = 6379;
-        String hostB = "192.168.1.80";
+
+        String hostB = "192.168.1.112";
         int portB = 6379;
 
+        String hostC = "192.168.1.113";
+        int portC = 6379;
+
         List<JedisShardInfo> jdsInfoList = new ArrayList<JedisShardInfo>(2);
+
         JedisShardInfo infoA = new JedisShardInfo(hostA, portA);
         JedisShardInfo infoB = new JedisShardInfo(hostB, portB);
+        JedisShardInfo infoC = new JedisShardInfo(hostC, portC);
+
         jdsInfoList.add(infoA);
         jdsInfoList.add(infoB);
+        jdsInfoList.add(infoC);
 
         pool = new ShardedJedisPool(config, jdsInfoList, Hashing.MURMUR_HASH, Sharded.DEFAULT_KEY_TAG_PATTERN);
     }
 
     public static void main(String[] args) {
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10000; i++) {
 
-            final int adx = i;
+            final int idx = i;
+            new Thread(() -> {
 
-            Thread thread = new Thread(() -> {
-                String key = generateKey(adx);
-                ShardedJedis jds = null;
-
-                try {
-                    jds = pool.getResource();
-                } catch (Exception e) {
-                    e.printStackTrace();
-
-                    if (jds != null) {
-                        jds.close();
-                    }
-                }
-
-                try {
-                    System.out.println(key + ":" + jds.getShard(key).getClient().getHost());
-                    System.out.println(jds.set(key, adx + ""));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    jds.close();
-                }
-            });
-
-            thread.start();
-        }
-
-        for (int i = 0; i < 100; i++) {
-
-            String key = generateKey(i);
-            ShardedJedis jds = null;
-
-            try {
-                jds = pool.getResource();
-            } catch (Exception e) {
-                e.printStackTrace();
+                ShardedJedis jds = pool.getResource();
+                String key = generateKey(idx);
+                System.out.println(key + ":" + "\t" + jds.set(key, key) + "\t" + jds.getShard(key).getClient().getHost());
                 jds.close();
-            }
-
-            try {
-                System.out.println(jds.get(key) + ":" + jds.getShard(key).getClient().getHost());
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                jds.close();
-            }
+            }).start();
         }
     }
 

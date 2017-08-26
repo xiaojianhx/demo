@@ -28,7 +28,8 @@
         <module>demo-hessian</module>
         <module>demo-springmvc</module>
         <module>demo-activiti</module>
-    </modules>
+    <module>demo-mongodb</module>
+  </modules>
 
     <dependencies>
         <dependency>

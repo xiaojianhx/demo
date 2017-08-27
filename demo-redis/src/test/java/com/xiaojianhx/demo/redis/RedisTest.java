@@ -14,7 +14,7 @@ public class RedisTest {
 
         try {
             Jedis jedis = new Jedis("192.168.1.151", 6379);
-            jedis.select(20);
+            jedis.select(0);
             jedis.set("name", "gao");
 
             // 有效期

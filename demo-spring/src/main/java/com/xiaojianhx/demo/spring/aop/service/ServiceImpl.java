@@ -1,11 +1,11 @@
 package com.xiaojianhx.demo.spring.aop.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ServiceImpl implements Service {
 
-    private static Logger log = LoggerFactory.getLogger(ServiceImpl.class);
+    private Logger log = LogManager.getLogger(getClass());
 
     public void method0() {
         log.info("ServiceImpl#method running...");

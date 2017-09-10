@@ -10,7 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jdk.version>1.8</jdk.version>
 
-        <logback.version>1.2.2</logback.version>
+        <log4j2.version>2.9.0</log4j2.version>
 
         <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
@@ -28,8 +28,8 @@
         <module>demo-hessian</module>
         <module>demo-springmvc</module>
         <module>demo-activiti</module>
-    <module>demo-mongodb</module>
-  </modules>
+        <module>demo-mongodb</module>
+    </modules>
 
     <dependencies>
         <dependency>
@@ -40,9 +40,9 @@
         </dependency>
 
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
         </dependency>
 
     </dependencies>

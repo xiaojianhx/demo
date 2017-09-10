@@ -1,7 +1,7 @@
 package com.xiaojianhx.demo.vertx.database;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.xiaojianhx.demo.vertx.EndHandler;
 import com.xiaojianhx.demo.vertx.FailureHandler;
@@ -12,7 +12,7 @@ import io.vertx.ext.web.Router;
 
 public class App extends AbstractVerticle {
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private Logger log = LogManager.getLogger(getClass());
 
     public void start() throws Exception {
 

@@ -2,14 +2,14 @@ package com.xiaojianhx.demo.spring.aop.aspect;
 
 import java.util.Arrays;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class LogConfigAspect {
 
-    private static Logger log = LoggerFactory.getLogger(LogConfigAspect.class);
+    private static Logger log = LogManager.getLogger(LogConfigAspect.class);
 
     public void before(JoinPoint point) {
         log.info(Arrays.deepToString(point.getArgs()));

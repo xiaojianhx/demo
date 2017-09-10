@@ -3,8 +3,8 @@ package com.xiaojianhx.demo.vertx.database;
 import java.util.concurrent.CompletableFuture;
 
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
@@ -15,7 +15,7 @@ import io.vertx.ext.web.RoutingContext;
 
 public class ServiceHandle implements Handler<RoutingContext> {
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    private Logger log = LogManager.getLogger(getClass());
 
     private AsyncSQLClient client;
 

@@ -1,48 +1,56 @@
 package com.xiaojianhx.demo.redis;
 
-import org.junit.Assert;
-import org.junit.Test;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 public class RedisListTest {
 
-    @Test
-    public void testPubSub() {
+    private static JedisPool pool;
 
-        try {
+    private static String KEY = "list";
 
-            new Thread(() -> {
-                Jedis jedis = getJedis();
-                for (int i = 0; i < 20; i++) {
-                    jedis.lpush("task-queue", "message-" + i);
-                }
-                jedis.close();
-            }).start();
+    private static AtomicInteger counter = new AtomicInteger(0);
 
-            for (int i = 0; i < 1; i++) {
+    public static void init() {
 
-                Jedis jedis = getJedis();
-                new Thread(() -> {
-                    while (true) {
-                        System.out.println(jedis.rpop("task-queue") == null);
-                        System.out.println(Thread.currentThread().getName() + "-" + jedis.rpop("task-queue"));
-                    }
-                }).start();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail(e.getMessage());
-        }
-    }
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxTotal(200);
+        config.setMaxIdle(200);
+        config.setMinIdle(200);
 
-    private Jedis getJedis() {
-        Jedis jedis = new Jedis("192.168.1.151", 6379);
-        jedis.select(0);
-        return jedis;
+        pool = new JedisPool(config, "192.168.1.151", 6379);
     }
 
     public static void main(String[] args) {
-        new RedisListTest().testPubSub();
+
+        init();
+
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> {
+                while (true) {
+                    Jedis jedis = pool.getResource();
+                    String val = jedis.rpop(KEY);
+
+                    if (val != null) {
+                        counter.incrementAndGet();
+                    }
+                    jedis.close();
+                }
+            }).start();
+        }
+
+        new Thread(() -> {
+            while (true) {
+                System.out.println(counter.get());
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }

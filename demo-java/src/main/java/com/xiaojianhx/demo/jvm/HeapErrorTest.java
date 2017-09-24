@@ -11,7 +11,7 @@ import java.util.List;
  * @author xiaojianhx
  * @version V1.0.0 $ 2017年7月16日下午8:45:32
  */
-public class Test {
+public class HeapErrorTest {
 
     public static void main(String[] args) {
 

@@ -19,7 +19,6 @@
     <modules>
         <module>demo-java</module>
         <module>demo-hibernate</module>
-        <module>demo-vertx</module>
         <module>demo-design-pattern</module>
         <module>demo-rabbitmq</module>
         <module>demo-spring</module>

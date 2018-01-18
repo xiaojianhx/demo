@@ -1,32 +1,36 @@
 package com.xiaojianhx.demo.thread;
 
+/**
+ * 避免脏读
+ * 
+ * @author xiaojianhx
+ * @version V1.0.0 $ 2018年1月18日下午11:18:29
+ */
 public class Test006 {
 
     public static void main(String[] args) {
 
-        Service service = new Service();
-        new Thread(() -> service.method()).start();
-        new Thread(() -> service.method()).start();
+        Service006 service = new Service006();
+        new Thread(() -> service.setValue("B", "BB"), "aaaa").start();
+        ThreadUtils.sleep(100);
+        service.getValue();
+    }
+}
+
+class Service006 {
+
+    private String username = "A";
+    private String password = "AA";
+
+    synchronized public void setValue(String username, String password) {
+        this.username = username;
+        ThreadUtils.sleep(500);
+        this.password = password;
+
+        System.out.println(Thread.currentThread().getName() + " set value, username=" + username + ", password=" + password + "");
     }
 
-    private static class Service {
-
-        synchronized public void method() {
-
-            if (Thread.currentThread().getName().equals("Thread-0")) {
-
-                int i = 1;
-                while (i == 1) {
-
-                    double s = Math.random();
-                    if (("" + s).substring(0, 8).equals("0.123456")) {
-                        System.out.println(Thread.currentThread().getName() + " error: d=" + s);
-                        Integer.parseInt("a");
-                    }
-                }
-            } else {
-                System.out.println(Thread.currentThread().getName());
-            }
-        }
+    synchronized public void getValue() {
+        System.out.println(Thread.currentThread().getName() + " get value, username=" + username + ", password=" + password + "");
     }
 }

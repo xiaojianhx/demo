@@ -1,57 +1,31 @@
 package com.xiaojianhx.demo.thread;
 
 /**
- * 脏读，改进的方法 @see {@link Test005}
  * 
  * @author xiaojianhx
- * @version V1.0.0 $ 2017年7月4日下午9:52:25
+ * @version V1.0.0 $ 2018年1月18日下午11:18:29
  */
 public class Test004 {
 
     public static void main(String[] args) {
 
-        Service service = new Service();
-        new Thread(new ThreadA(service)).start();
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        service.get();
+        Service004 service = new Service004();
+        new Thread(() -> service.methodA(), "aaaa").start();
+        new Thread(() -> service.methodB(), "bbbb").start();
+    }
+}
+
+class Service004 {
+
+    synchronized public void methodA() {
+        System.out.println(Thread.currentThread().getName() + " start");
+        ThreadUtils.sleep(200);
+        System.out.println(Thread.currentThread().getName() + " end");
     }
 
-    private static class ThreadA implements Runnable {
-
-        private Service service;
-
-        public ThreadA(Service service) {
-            this.service = service;
-        }
-
-        public void run() {
-            service.set("B", "BB");
-        }
-    }
-
-    private static class Service {
-
-        private String username = "A";
-        private String password = "AA";
-
-        synchronized public void set(String username, String password) {
-
-            try {
-                this.username = username;
-                Thread.sleep(5000);
-                this.password = password;
-                System.out.printf("set username = %s, password=%s\n", username, password);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        public void get() {
-            System.out.printf("get username = %s, password=%s\n", username, password);
-        }
+    synchronized public void methodB() {
+        System.out.println(Thread.currentThread().getName() + " start");
+        ThreadUtils.sleep(100);
+        System.out.println(Thread.currentThread().getName() + " end");
     }
 }

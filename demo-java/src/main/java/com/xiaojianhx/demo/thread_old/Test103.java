@@ -1,4 +1,4 @@
-package com.xiaojianhx.demo.thread;
+package com.xiaojianhx.demo.thread_old;
 
 public class Test103 {
 

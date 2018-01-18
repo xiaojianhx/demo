@@ -1,6 +1,6 @@
-package com.xiaojianhx.demo.thread;
+package com.xiaojianhx.demo.thread_old;
 
-public class Test008 {
+public class Test009 {
 
     public static void main(String[] args) {
 
@@ -13,7 +13,7 @@ public class Test008 {
 
         public void method0() {
 
-            synchronized (this) {
+            synchronized (Task.class) {
                 System.out.println("A bin " + Thread.currentThread().getName());
                 try {
                     Thread.sleep(1000);
@@ -26,7 +26,7 @@ public class Test008 {
 
         public void method1() {
 
-            synchronized (this) {
+            synchronized (Task.class) {
                 System.out.println("B bin " + Thread.currentThread().getName());
                 System.out.println("B end " + Thread.currentThread().getName());
             }

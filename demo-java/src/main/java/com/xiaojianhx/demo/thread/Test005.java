@@ -1,39 +1,36 @@
 package com.xiaojianhx.demo.thread;
 
+/**
+ * 脏读
+ * 
+ * @author xiaojianhx
+ * @version V1.0.0 $ 2018年1月18日下午11:18:29
+ */
 public class Test005 {
 
     public static void main(String[] args) {
 
-        Service service = new Service();
-        new Thread(() -> service.set("B", "BB")).start();
+        Service005 service = new Service005();
+        new Thread(() -> service.setValue("B", "BB"), "aaaa").start();
+        ThreadUtils.sleep(100);
+        service.getValue();
+    }
+}
 
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        service.get();
+class Service005 {
+
+    private String username = "A";
+    private String password = "AA";
+
+    synchronized public void setValue(String username, String password) {
+        this.username = username;
+        ThreadUtils.sleep(500);
+        this.password = password;
+
+        System.out.println(Thread.currentThread().getName() + " set value, username=" + username + ", password=" + password + "");
     }
 
-    private static class Service {
-
-        private String username = "A";
-        private String password = "AA";
-
-        synchronized public void set(String username, String password) {
-
-            try {
-                this.username = username;
-                Thread.sleep(1000);
-                this.password = password;
-                System.out.printf("set username = %s, password=%s\n", username, password);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        synchronized public void get() {
-            System.out.printf("get username = %s, password=%s\n", username, password);
-        }
+    public void getValue() {
+        System.out.println(Thread.currentThread().getName() + " get value, username=" + username + ", password=" + password + "");
     }
 }

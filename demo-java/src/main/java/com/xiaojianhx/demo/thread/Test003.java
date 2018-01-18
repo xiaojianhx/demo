@@ -1,69 +1,31 @@
 package com.xiaojianhx.demo.thread;
 
+/**
+ * 
+ * @author xiaojianhx
+ * @version V1.0.0 $ 2018年1月18日下午11:18:29
+ */
 public class Test003 {
 
     public static void main(String[] args) {
 
-        test1();
+        Service003 service = new Service003();
+        new Thread(() -> service.methodA(), "aaaa").start();
+        new Thread(() -> service.methodB(), "bbbb").start();
+    }
+}
+
+class Service003 {
+
+    synchronized public void methodA() {
+        System.out.println(Thread.currentThread().getName() + " start");
+        ThreadUtils.sleep(200);
+        System.out.println(Thread.currentThread().getName() + " end");
     }
 
-    private static void test1() {
-
-        Service service = new Service();
-        new Thread(new ThreadA(service)).start();
-        new Thread(new ThreadB(service)).start();
-    }
-
-    private static class ThreadA implements Runnable {
-
-        private Service service;
-
-        public ThreadA(Service service) {
-            this.service = service;
-        }
-
-        public void run() {
-            service.method0("a");
-        }
-    }
-
-    private static class ThreadB implements Runnable {
-
-        private Service service;
-
-        public ThreadB(Service service) {
-            this.service = service;
-        }
-
-        public void run() {
-            service.method1("b");
-        }
-    }
-
-    private static class Service {
-
-        synchronized public void method0(String username) {
-
-            try {
-
-                System.out.println("begin method0 threadName=" + Thread.currentThread().getName());
-                Thread.sleep(1000);
-                System.out.println("end endTime=" + Thread.currentThread().getName());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        synchronized public void method1(String username) {
-
-            try {
-
-                System.out.println("begin method1 threadName=" + Thread.currentThread().getName());
-                Thread.sleep(1000);
-                System.out.println("end endTime=" + Thread.currentThread().getName());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+    public void methodB() {
+        System.out.println(Thread.currentThread().getName() + " start");
+        ThreadUtils.sleep(100);
+        System.out.println(Thread.currentThread().getName() + " end");
     }
 }

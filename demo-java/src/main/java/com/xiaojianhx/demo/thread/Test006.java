@@ -21,7 +21,7 @@ class Service006 {
 
     private String username = "A";
     private String password = "AA";
-
+ 
     synchronized public void setValue(String username, String password) {
         this.username = username;
         ThreadUtils.sleep(500);

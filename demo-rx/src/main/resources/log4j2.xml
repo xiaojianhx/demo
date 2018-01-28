@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="INFO" monitorInterval="60">
+
+    <properties>
+        <property name="LOG_HOME">/logs/demo/rx/</property>
+        <property name="PATTERN">[%-5level][%d][%t][%c{2}.%M:%L] - %msg%n</property>
+    </properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN}" />
+        </Console>
+
+        <RollingFile name="app" fileName="${LOG_HOME}app.log" filePattern="${LOG_HOME}app_%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${PATTERN}" />
+
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1" />
+            </Policies>
+
+            <DefaultRolloverStrategy max="50">
+                <Delete basePath="${LOG_HOME}" maxDepth="1">
+                    <IfFileName glob="${LOG_HOME}app_*.log" />
+                    <IfLastModified age="30d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <root level="trace" additivity="false" includeLocation="true">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="app" />
+        </root>
+    </Loggers>
+</Configuration>

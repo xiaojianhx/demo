@@ -1,0 +1,9 @@
+Rental Record for xiaojianhx
+	天王之王1	6.5
+	天王之王2	14.0
+	天王之王3	30.0
+	天王之王4	60.0
+	天王之王5	27.0
+	天王之王6	1.5
+Amount owed is 139.0
+You earned 8 frequent renter points 

@@ -30,6 +30,7 @@
         <module>demo-activiti</module>
         <module>demo-mongodb</module>
         <module>demo-rx</module>
+        <module>demo-lucene</module>
     </modules>
 
     <dependencies>

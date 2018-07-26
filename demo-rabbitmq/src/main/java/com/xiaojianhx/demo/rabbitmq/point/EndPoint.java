@@ -15,7 +15,7 @@ public abstract class EndPoint {
         this.endPointName = endpointName;
 
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost("192.168.1.191");
         connection = factory.newConnection();
         channel = connection.createChannel();
 

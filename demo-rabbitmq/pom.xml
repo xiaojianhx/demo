@@ -10,7 +10,7 @@
     <artifactId>demo-rabbitmq</artifactId>
 
     <properties>
-        <rabbitmq.version>3.6.2</rabbitmq.version>
+        <rabbitmq.version>5.3.0</rabbitmq.version>
     </properties>
 
     <dependencies>

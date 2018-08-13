@@ -30,6 +30,7 @@
         <module>demo-mongodb</module>
         <module>demo-rx</module>
         <module>demo-lucene</module>
+        <module>demo-quatz</module>
     </modules>
 
     <dependencies>

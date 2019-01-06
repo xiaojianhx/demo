@@ -28,11 +28,9 @@
         <module>demo-redis</module>
         <module>demo-hessian</module>
         <module>demo-springmvc</module>
-        <module>demo-activiti</module>
         <module>demo-mongodb</module>
         <module>demo-rx</module>
         <module>demo-lucene</module>
-        <module>demo-quatz</module>
     </modules>
 
     <dependencies>
@@ -57,26 +55,26 @@
 
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>env-win</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <compile.bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</compile.bootclasspath>
-            </properties>
-        </profile>
-        <profile>
-            <id>env-unix</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <compile.bootclasspath>${java.home}/lib/rt.jar:${java.home}/lib/jce.jar</compile.bootclasspath>
-            </properties>
-        </profile>
-    </profiles>
+    <!-- <profiles> -->
+    <!-- <profile> -->
+    <!-- <id>env-win</id> -->
+    <!-- <activation> -->
+    <!-- <activeByDefault>true</activeByDefault> -->
+    <!-- </activation> -->
+    <!-- <properties> -->
+    <!-- <compile.bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</compile.bootclasspath> -->
+    <!-- </properties> -->
+    <!-- </profile> -->
+    <!-- <profile> -->
+    <!-- <id>env-unix</id> -->
+    <!-- <activation> -->
+    <!-- <activeByDefault>false</activeByDefault> -->
+    <!-- </activation> -->
+    <!-- <properties> -->
+    <!-- <compile.bootclasspath>${java.home}/lib/rt.jar:${java.home}/lib/jce.jar</compile.bootclasspath> -->
+    <!-- </properties> -->
+    <!-- </profile> -->
+    <!-- </profiles> -->
 
     <repositories>
         <repository>

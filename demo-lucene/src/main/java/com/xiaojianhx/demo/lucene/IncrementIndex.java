@@ -73,7 +73,7 @@ public class IncrementIndex {
 
     private ResultSet getResult() throws Exception {
 
-        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Class.forName("com.mysql.jdbc.Driver");
         String url = "jdbc:mysql://192.168.1.80:3306/app";
         String userName = "root";
         String password = "123456";

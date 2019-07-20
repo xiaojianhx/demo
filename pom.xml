@@ -9,10 +9,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.10</maven.compiler.source>
-        <maven.compiler.target>1.10</maven.compiler.target>
+        <maven.compiler.source>12</maven.compiler.source>
+        <maven.compiler.target>12</maven.compiler.target>
 
-        <log4j2.version>2.11.1</log4j2.version>
+        <log4j2.version>2.12.0</log4j2.version>
 
         <!-- 日志异步 -->
         <disruptor.version>3.4.2</disruptor.version>

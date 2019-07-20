@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.xiaojianhx</groupId>
@@ -12,9 +12,9 @@
 
     <properties>
 
-        <springmvc.version>4.3.8.RELEASE</springmvc.version>
+        <spring.version>5.1.8.RELEASE</spring.version>
 
-        <fasterxml.version>2.8.6</fasterxml.version>
+        <fasterxml.version>2.9.9.1</fasterxml.version>
 
         <commons.fileupload.version>1.3.2</commons.fileupload.version>
         <jetty.version>6.1.26</jetty.version>
@@ -27,10 +27,11 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${springmvc.version}</version>
+            <version>${spring.version}</version>
         </dependency>
 
         <!-- json -->

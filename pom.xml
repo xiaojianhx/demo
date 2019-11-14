@@ -12,7 +12,7 @@
         <maven.compiler.source>12</maven.compiler.source>
         <maven.compiler.target>12</maven.compiler.target>
 
-        <log4j2.version>2.12.0</log4j2.version>
+        <log4j2.version>2.12.1</log4j2.version>
 
         <!-- 日志异步 -->
         <disruptor.version>3.4.2</disruptor.version>

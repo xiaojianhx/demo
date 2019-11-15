@@ -26,27 +26,27 @@ public class Application {
 
     private static void createObject() {
 
-        ConfigurableApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
+        var ac = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
 
         log.info("=========================第一种方式创建对象:set方法============================");
-        Bean00 bean00 = (Bean00) ac.getBean("bean00");
+        var bean00 = (Bean00) ac.getBean("bean00");
         log.info(bean00.getAccount());
         log.info(bean00.getPassword());
 
         log.info("=========================第一种方式创建对象:构造器============================");
-        Bean01 bean01 = (Bean01) ac.getBean("bean01");
+        var bean01 = (Bean01) ac.getBean("bean01");
         log.info(bean01.getAccount());
         log.info(bean01.getPassword());
 
         log.info("=========================第二种方式创建对象:静态工厂方法============================");
-        Bean10 bean10 = (Bean10) ac.getBean("bean10");
+        var bean10 = (Bean10) ac.getBean("bean10");
         log.info(bean10.getAccount());
         log.info(bean10.getPassword());
 
         log.info("=========================第三种方式创建对象:工厂方法============================");
-        BeanFactory factory = (BeanFactory) ac.getBean("factory");
+        var factory = (BeanFactory) ac.getBean("factory");
 
-        Bean20 bean20 = (Bean20) factory.getObject();
+        var bean20 = (Bean20) factory.getObject();
 
         log.info(bean20.getAccount());
         log.info(bean20.getPassword());
@@ -56,15 +56,15 @@ public class Application {
 
     private static void createObjectScope() {
 
-        ConfigurableApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
+        var ac = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
 
-        CountDownLatch latch = new CountDownLatch(4);
+        var latch = new CountDownLatch(4);
 
-        GetBean bean00 = new GetBean(latch, ac, "bean30");
-        GetBean bean01 = new GetBean(latch, ac, "bean30");
+        var bean00 = new GetBean(latch, ac, "bean30");
+        var bean01 = new GetBean(latch, ac, "bean30");
 
-        GetBean bean10 = new GetBean(latch, ac, "bean31");
-        GetBean bean11 = new GetBean(latch, ac, "bean31");
+        var bean10 = new GetBean(latch, ac, "bean31");
+        var bean11 = new GetBean(latch, ac, "bean31");
 
         new Thread(bean00).start();
         new Thread(bean01).start();

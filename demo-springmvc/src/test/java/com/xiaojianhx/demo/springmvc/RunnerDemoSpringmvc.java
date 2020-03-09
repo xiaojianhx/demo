@@ -1,6 +1,5 @@
 package com.xiaojianhx.demo.springmvc;
 
-import org.mortbay.jetty.Connector;
 import org.mortbay.jetty.Server;
 import org.mortbay.jetty.nio.SelectChannelConnector;
 import org.mortbay.jetty.webapp.WebAppContext;
@@ -15,15 +14,15 @@ public class RunnerDemoSpringmvc {
 
     public static void main(String[] args) throws Exception {
 
-        QueuedThreadPool boundedThreadPool = new QueuedThreadPool();
-        boundedThreadPool.setMaxThreads(100);
-        server.setThreadPool(boundedThreadPool);
+        var pool = new QueuedThreadPool();
+        pool.setMaxThreads(100);
+        server.setThreadPool(pool);
 
-        Connector connector = new SelectChannelConnector();
+        var connector = new SelectChannelConnector();
         connector.setPort(PORT);
         server.addConnector(connector);
 
-        WebAppContext context = new WebAppContext("src/main/webapp", CONTEXT_PATH);
+        var context = new WebAppContext("src/main/webapp", CONTEXT_PATH);
         context.setConfigurationClasses(new String[] { "org.mortbay.jetty.webapp.WebInfConfiguration",
                 "org.mortbay.jetty.plus.webapp.EnvConfiguration", "org.mortbay.jetty.plus.webapp.Configuration",
                 "org.mortbay.jetty.webapp.JettyWebXmlConfiguration", "org.mortbay.jetty.webapp.TagLibConfiguration" });

@@ -31,13 +31,14 @@
         <module>demo-mongodb</module>
         <module>demo-rx</module>
         <module>demo-lucene</module>
+        <module>demo-quartz</module>
     </modules>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13</version>
             <scope>test</scope>
         </dependency>
 

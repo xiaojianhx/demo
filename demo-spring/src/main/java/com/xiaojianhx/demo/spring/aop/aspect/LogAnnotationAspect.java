@@ -2,8 +2,6 @@ package com.xiaojianhx.demo.spring.aop.aspect;
 
 import java.util.Arrays;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -19,38 +17,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAnnotationAspect {
 
-    private static Logger log = LogManager.getLogger(LogAnnotationAspect.class);
-
     @Pointcut("execution(* com.xiaojianhx.demo.spring.aop.service.*.*(..))")
     public void aspect() {
-        log.info(Thread.currentThread() + ":aspect");
+        System.out.println(Thread.currentThread() + ":aspect");
     }
 
     @Before("aspect()")
     public void before(JoinPoint point) {
-
-        log.info(Arrays.deepToString(point.getArgs()));
-        log.info(Thread.currentThread() + ":before");
+        System.out.println(Arrays.deepToString(point.getArgs()));
+        System.out.println(Thread.currentThread() + ":before");
     }
 
     @After("aspect()")
     public void after() {
-        log.info(Thread.currentThread() + ":after");
+        System.out.println(Thread.currentThread() + ":after");
     }
 
     @Around("aspect()")
     public void around(ProceedingJoinPoint joinpoint) {
-        log.info(Thread.currentThread() + ":around");
+        System.out.println(Thread.currentThread() + ":around");
     }
 
     @AfterReturning("aspect()")
     public void afterReturning() {
-        log.info(Thread.currentThread() + ":afterReturning");
+        System.out.println(Thread.currentThread() + ":afterReturning");
     }
 
     @AfterThrowing(pointcut = "aspect()", throwing = "ex")
     public void afterThrowing(JoinPoint point, Exception ex) {
-        log.info(Thread.currentThread() + ":afterThrowing");
-        log.error(ex.getMessage());
+        System.out.println(Thread.currentThread() + ":afterThrowing");
+        System.out.println(ex.getMessage());
     }
 }

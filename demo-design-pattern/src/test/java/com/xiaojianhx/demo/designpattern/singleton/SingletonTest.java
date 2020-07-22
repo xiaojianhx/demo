@@ -1,6 +1,5 @@
 package com.xiaojianhx.demo.designpattern.singleton;
 
-import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.CountDownLatch;
 
@@ -12,14 +11,14 @@ public class SingletonTest {
     @Test
     public void test1() {
 
-        int size = 10;
+        var size = 10;
 
-        final Set<Integer> hashcodeSet = new TreeSet<>();
+        var hashcodeSet = new TreeSet<Integer>();
 
-        CountDownLatch cdl = new CountDownLatch(10);
-        for (int i = 0; i < size; i++) {
+        var cdl = new CountDownLatch(10);
+        for (var i = 0; i < size; i++) {
 
-            Thread t = new Thread(() -> {
+            var t = new Thread(() -> {
                 hashcodeSet.add(Singleton1.getInstance().hashCode());
                 cdl.countDown();
             });
@@ -39,14 +38,14 @@ public class SingletonTest {
     @Test
     public void test2() {
 
-        int size = 10;
+        var size = 10;
 
-        final Set<Integer> hashcodeSet = new TreeSet<>();
+        var hashcodeSet = new TreeSet<Integer>();
 
-        CountDownLatch cdl = new CountDownLatch(10);
-        for (int i = 0; i < size; i++) {
+        var cdl = new CountDownLatch(10);
+        for (var i = 0; i < size; i++) {
 
-            Thread t = new Thread(() -> {
+            var t = new Thread(() -> {
                 hashcodeSet.add(Singleton2.getInstance().hashCode());
                 cdl.countDown();
             });
@@ -66,14 +65,14 @@ public class SingletonTest {
     @Test
     public void test3() {
 
-        int size = 10;
+        var size = 10;
 
-        final Set<Integer> hashcodeSet = new TreeSet<>();
+        var hashcodeSet = new TreeSet<Integer>();
 
-        CountDownLatch cdl = new CountDownLatch(10);
-        for (int i = 0; i < size; i++) {
+        var cdl = new CountDownLatch(10);
+        for (var i = 0; i < size; i++) {
 
-            Thread t = new Thread(() -> {
+            var t = new Thread(() -> {
                 hashcodeSet.add(Singleton3.getInstance().hashCode());
                 cdl.countDown();
             });
@@ -93,14 +92,14 @@ public class SingletonTest {
     @Test
     public void test4() {
 
-        int size = 10;
+        var size = 10;
 
-        final Set<Integer> hashcodeSet = new TreeSet<>();
+        var hashcodeSet = new TreeSet<Integer>();
 
-        CountDownLatch cdl = new CountDownLatch(10);
-        for (int i = 0; i < size; i++) {
+        var cdl = new CountDownLatch(10);
+        for (var i = 0; i < size; i++) {
 
-            Thread t = new Thread(() -> {
+            var t = new Thread(() -> {
                 hashcodeSet.add(Singleton4.getInstance().hashCode());
                 cdl.countDown();
             });

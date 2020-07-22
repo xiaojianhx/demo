@@ -2,8 +2,6 @@ package com.xiaojianhx.demo.spring.ioc;
 
 import java.util.concurrent.CountDownLatch;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,8 +12,6 @@ import com.xiaojianhx.demo.spring.ioc.bean.Bean20;
 import com.xiaojianhx.demo.spring.ioc.bean.BeanFactory;
 
 public class Application {
-
-    private static Logger log = LogManager.getLogger(Application.class);
 
     public static void main(String[] args) {
 
@@ -28,28 +24,28 @@ public class Application {
 
         var ac = new ClassPathXmlApplicationContext("classpath*:applicationContext.xml");
 
-        log.info("=========================第一种方式创建对象:set方法============================");
+        System.out.println("=========================第一种方式创建对象:set方法============================");
         var bean00 = (Bean00) ac.getBean("bean00");
-        log.info(bean00.getAccount());
-        log.info(bean00.getPassword());
+        System.out.println(bean00.getAccount());
+        System.out.println(bean00.getPassword());
 
-        log.info("=========================第一种方式创建对象:构造器============================");
+        System.out.println("=========================第一种方式创建对象:构造器============================");
         var bean01 = (Bean01) ac.getBean("bean01");
-        log.info(bean01.getAccount());
-        log.info(bean01.getPassword());
+        System.out.println(bean01.getAccount());
+        System.out.println(bean01.getPassword());
 
-        log.info("=========================第二种方式创建对象:静态工厂方法============================");
+        System.out.println("=========================第二种方式创建对象:静态工厂方法============================");
         var bean10 = (Bean10) ac.getBean("bean10");
-        log.info(bean10.getAccount());
-        log.info(bean10.getPassword());
+        System.out.println(bean10.getAccount());
+        System.out.println(bean10.getPassword());
 
-        log.info("=========================第三种方式创建对象:工厂方法============================");
+        System.out.println("=========================第三种方式创建对象:工厂方法============================");
         var factory = (BeanFactory) ac.getBean("factory");
 
         var bean20 = (Bean20) factory.getObject();
 
-        log.info(bean20.getAccount());
-        log.info(bean20.getPassword());
+        System.out.println(bean20.getAccount());
+        System.out.println(bean20.getPassword());
 
         ac.close();
     }

@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.xiaojianhx.utils.IOUtils;
+import com.xiaojianhx.common.utils.IOUtils;
 
 public class LuceneTest {
 
@@ -57,8 +57,7 @@ public class LuceneTest {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            IOUtils.close(stmt);
-            IOUtils.close(conn);
+            IOUtils.close(stmt, conn);
         }
 
         return data;

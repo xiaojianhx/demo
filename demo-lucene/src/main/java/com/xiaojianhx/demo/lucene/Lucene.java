@@ -19,7 +19,7 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
-import com.xiaojianhx.utils.IOUtils;
+import com.xiaojianhx.common.utils.IOUtils;
 
 public final class Lucene {
 
@@ -50,8 +50,7 @@ public final class Lucene {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            IOUtils.close(writer);
-            IOUtils.close(directory);
+            IOUtils.close(writer, directory);
         }
     }
 

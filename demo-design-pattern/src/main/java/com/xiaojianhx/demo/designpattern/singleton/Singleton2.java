@@ -1,6 +1,6 @@
 package com.xiaojianhx.demo.designpattern.singleton;
 
-import com.xiaojianhx.utils.ThreadUtils;
+import com.xiaojianhx.common.utils.ThreadUtils;
 
 /**
  * 不同步，恶汉式

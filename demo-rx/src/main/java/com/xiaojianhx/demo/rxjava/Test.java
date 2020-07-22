@@ -1,8 +1,5 @@
 package com.xiaojianhx.demo.rxjava;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -11,11 +8,9 @@ import io.reactivex.disposables.Disposable;
 
 public class Test {
 
-    private static Logger logger = LogManager.getLogger(Test.class);
-
     public static void main(String[] args) {
 
-        Observable<Integer> observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+        var observable = Observable.create(new ObservableOnSubscribe<Integer>() {
 
             public void subscribe(ObservableEmitter<Integer> e) throws Exception {
                 e.onNext(1);
@@ -25,21 +20,21 @@ public class Test {
             }
         });
 
-        Observer<Integer> observer = new Observer<Integer>() {
+        var observer = new Observer<Integer>() {
 
             public void onSubscribe(Disposable d) {
             }
 
             public void onNext(Integer integer) {
-                logger.debug(integer);
+                System.out.println(integer);
             }
 
             public void onError(Throwable e) {
-                logger.debug("onError : value : " + e.getMessage());
+                System.out.println("onError : value : " + e.getMessage());
             }
 
             public void onComplete() {
-                logger.debug("onComplete");
+                System.out.println("onComplete");
             }
         };
 

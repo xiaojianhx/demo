@@ -8,12 +8,14 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>demo-rx</artifactId>
+    <artifactId>demo-netty</artifactId>
 
     <dependencies>
+
         <dependency>
-            <groupId>io.reactivex.rxjava2</groupId>
-            <artifactId>rxjava</artifactId>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
         </dependency>
+
     </dependencies>
 </project>

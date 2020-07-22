@@ -1,8 +1,5 @@
 package com.xiaojianhx.demo.algorithm.sort;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 /**
  * 冒泡排序
  * 
@@ -10,8 +7,6 @@ import org.apache.logging.log4j.Logger;
  * @version V1.0.0 $ 2016年8月23日 上午10:04:52
  */
 public class Bubble {
-
-    private Logger log = LogManager.getLogger(Bubble.class);
 
     private int loop_count;
     private int change_count;
@@ -32,13 +27,13 @@ public class Bubble {
                     arr[j] = arr[j + 1];
                     arr[j + 1] = tmp;
                 }
-                log.debug("    :" + toString(arr));
+                System.out.println("    :" + toString(arr));
             }
-            log.debug("====:" + toString(arr));
+            System.out.println("====:" + toString(arr));
         }
 
-        log.debug("循环次数:" + loop_count);
-        log.debug("交换次数:" + change_count);
+        System.out.println("循环次数:" + loop_count);
+        System.out.println("交换次数:" + change_count);
     }
 
     private String toString(int[] arr) {

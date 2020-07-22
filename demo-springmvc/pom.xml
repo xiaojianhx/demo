@@ -3,20 +3,15 @@
     xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.xiaojianhx</groupId>
+        <groupId>com.xiaojianhx.demo</groupId>
         <artifactId>demo-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
+
     <artifactId>demo-springmvc</artifactId>
     <packaging>war</packaging>
 
     <properties>
-
-        <spring.version>5.2.4.RELEASE</spring.version>
-
-        <fasterxml.version>2.10.3</fasterxml.version>
-
-        <commons.fileupload.version>1.4</commons.fileupload.version>
         <jetty.version>6.1.26</jetty.version>
     </properties>
 
@@ -31,24 +26,17 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
         </dependency>
 
-        <!-- json -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${fasterxml.version}</version>
         </dependency>
-        <!-- /json -->
 
-        <!-- common -->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>${commons.fileupload.version}</version>
         </dependency>
-        <!-- /common -->
 
         <!-- jetty -->
         <dependency>

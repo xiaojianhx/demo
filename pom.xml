@@ -24,7 +24,6 @@
         <module>demo-rabbitmq</module>
         <module>demo-spring</module>
         <module>demo-mybatis</module>
-        <module>demo-springmvc</module>
         <module>demo-mongodb</module>
         <module>demo-rx</module>
         <module>demo-lucene</module>

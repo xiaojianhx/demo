@@ -19,4 +19,8 @@ public class Singleton3 {
     public static Singleton3 getInstance() {
         return Lazy.instance;
     }
+
+    protected Object clone() throws CloneNotSupportedException {
+        return this;
+    }
 }

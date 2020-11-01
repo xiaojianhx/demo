@@ -27,4 +27,8 @@ public class Singleton4 {
             instance = new Singleton4();
         }
     }
+
+    protected Object clone() throws CloneNotSupportedException {
+        return this;
+    }
 }

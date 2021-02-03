@@ -16,37 +16,48 @@ public class Test {
 
     public static void main(String[] args) {
 
-        var observable = Observable.create(new ObservableOnSubscribe<Integer>() {
+        test();
 
+        logger.info("run here");
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    private static void test() {
+
+        var observable1 = Observable.create(new ObservableOnSubscribe<Integer>() {
             public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-
                 logger.info("emitter:{}", 1);
                 e.onNext(1);
-
+                Thread.sleep(5000);
                 logger.info("emitter:{}", 2);
                 e.onNext(2);
-
-                logger.info("emitter:{}", 3);
-                e.onNext(3);
-
-                logger.info("emitter:{}", 4);
-                e.onNext(4);
-
-                Thread.sleep(3000);
-
-                logger.info("emitter:{}", 5);
-                e.onNext(5);
             }
-        });
+        }).subscribeOn(Schedulers.io());
 
-        var observer = new Observer<Integer>() {
+        var observable2 = Observable.create(new ObservableOnSubscribe<String>() {
+            public void subscribe(ObservableEmitter<String> e) throws Exception {
+                logger.info("emitter:{}", "a");
+                e.onNext("a");
+                logger.info("emitter:{}", "b");
+                e.onNext("b");
+                logger.info("emitter:{}", "c");
+                e.onNext("c");
+            }
+        }).subscribeOn(Schedulers.io());
+
+        var observer = new Observer<String>() {
 
             public void onSubscribe(Disposable d) {
                 logger.info("Disposable:{}", d);
             }
 
-            public void onNext(Integer integer) {
-                logger.info(" onNext:{}", integer);
+            public void onNext(String str) {
+                logger.info(" onNext:{}", str);
             }
 
             public void onError(Throwable e) {
@@ -58,12 +69,6 @@ public class Test {
             }
         };
 
-        observable.subscribeOn(Schedulers.io()).observeOn(Schedulers.single()).subscribe(observer);
-
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e1) {
-            e1.printStackTrace();
-        }
+        Observable.zip(observable1, observable2, (a, b) -> a + b).subscribeOn(Schedulers.io()).observeOn(Schedulers.newThread()).subscribe(observer);
     }
 }

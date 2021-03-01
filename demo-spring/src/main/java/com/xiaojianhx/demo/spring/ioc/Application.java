@@ -11,12 +11,17 @@ import com.xiaojianhx.demo.spring.ioc.bean.Bean10;
 import com.xiaojianhx.demo.spring.ioc.bean.Bean20;
 import com.xiaojianhx.demo.spring.ioc.bean.BeanFactory;
 
+/**
+ * Application
+ * 
+ * @author xiaojianhx
+ * @version V1.0.0 $ 2021-03-01 15:03:50 init ---- xiaojianhx
+ */
 public class Application {
 
     public static void main(String[] args) {
 
         createObject();
-
         createObjectScope();
     }
 

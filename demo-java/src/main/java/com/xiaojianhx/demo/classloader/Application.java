@@ -2,14 +2,20 @@ package com.xiaojianhx.demo.classloader;
 
 import java.util.Properties;
 
-public class App {
+/**
+ * Application
+ * 
+ * @author xiaojianhx
+ * @version V1.0.0 $ 2021-03-01 15:08:02 init ---- xiaojianhx
+ */
+public class Application {
 
     public static void main(String[] args) {
 
         // property();
         // classloader();
         try {
-            ClassLoader loader = App.class.getClassLoader();
+            ClassLoader loader = Application.class.getClassLoader();
 
             String clazz = Bean.class.getClass().getName();
 
@@ -36,7 +42,7 @@ public class App {
     }
 
     public static void classloader() {
-        App app = new App();
+        var app = new Application();
         Class c = app.getClass();
         ClassLoader loader = c.getClassLoader();
         System.out.println(loader.getParent().getParent());
